@@ -2,23 +2,26 @@ const filesystem = require ('./node_modules/graceful-fs/graceful-fs');
 const inquirer =require('inquirer');
 const {Circle, Tiangle, Square} = require('./lib/shapes');
 
-class Svg() {
+class Svg {
+  constructor(){
  this.textEl = ''
  this.shapeEl = ''
 }
 render(){
   return`<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200">`
 }
-setTextEl(text,color){
+setTextEl(text,color) {
   this.textEl = `<text x="145" y="130" font-size="65" text-anchor="middle" fill="RED">SVG</text>`
 }
-setShapeEl(shape){
+setShapeEl(shape) {
   this.shapeEl = shape.render()
 }
 
 
-const questions ={
+const questions = [
   {
-    typeof;
+    type: 'input',
+    name: 'text-color',
+    message: 'TEXT COLOR: ENTER A COLOR '
   }
-}
+]

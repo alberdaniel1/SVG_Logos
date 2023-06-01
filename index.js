@@ -1,6 +1,6 @@
 const filesystem = require ('./node_modules/graceful-fs/graceful-fs');
 const inquirer =require('inquirer');
-const {Circle, Tiangle, Square} = require('./lib/shapes');
+const {Circle, Triangle, Square} = require('./lib/shapes');
 
 class Svg {
   constructor(){
@@ -22,17 +22,17 @@ const questions = [
   {
     type: 'input',
     name: 'text-color',
-    message: 'TEXT COLOR: enter a color keyword.',
+    message: 'TEXT COLOR: enter a color keyword:',
   },
   {
     type: 'input',
     name: ' text',
-    message: ' TEXT: Enter up to 3 charecters.',
+    message: ' TEXT: Enter up to 3 charecters:',
   },
   {
     type: 'input',
     name: 'shape',
-    message: 'SHAPE COLOR: Enter a color keyword.'
+    message: 'SHAPE COLOR: Enter a color keyword:',
   },
   {
     type: 'list',
@@ -45,12 +45,12 @@ const questions = [
 
 // function write data to file
 function writeToFile(fileName, data ) {
-  console.log("Writing ["+ data +"] to file [" + fileName +"]")
+  console.log("Writing [" + data + "] to file [" + fileName +"]")
   filesystem.writeToFile(fileName, data, function (err) {
     if(err) {
       return console.log(err);
     }
-    console.log("Logo.sgv has be created!");
+    console.log("Logo.sgv has been created!");
   });
 }
 
@@ -64,13 +64,13 @@ async function init() {
 
   // User text
   var user_text = "";
-  if (answers.text.lenght > 0 && answers.text.lenght <4) {
+  if(answers.text.length > 0 && answers.text.length < 4) {
     user_text = answers.text;
   } else {
     console.log('Invalid user text. Enter 1-3 Characters only');
     return;
   }
-}
+
 console.log("User text: [" + user_text +"]");
 // font color
 user_font_color = answers["text-color"];
@@ -87,7 +87,32 @@ console.log("User shape type: [" + user_shape_type +"]");
 let user_shape;
 if(user_shape_type === "Square"  || user_shape_type === "square"){
   user_shape = new Square();
-  console.log ("User selected Square shape")
+  console.log ("User selected Square shape");
 }
 else if (user_shape_type === "Circle"|| user_shape_type === "circle") {
+ user_shape = new Circle();
+ console.log("User selected Circle ")
+} 
+else if (user_shape_type === "Triangle"|| user_shape_type === "triangle") {
+  user_shape = new Triangle();
+  console.log("User selected triangle ")
+ } 
+ else {
+  console.log("Invalid shape");
+ }
+ user_shape.setColor(user_shape_color);
+
+
+ var svg = new Svg();
+ svg.setTextEl(user_text, user_font_color);
+ svg.setShapeEl(user_shape);
+ svgString = svg.render();
+
+ console.log("Display shape:\n\n"+ svgString);
+
+
+ console.log("Shape gneration complete!");
+ console.log("Writing shape to file...");
+ writeToFile(svg_File,svgString);
 }
+init()

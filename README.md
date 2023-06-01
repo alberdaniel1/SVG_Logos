@@ -8,7 +8,7 @@ Generate an SVG logo with your choice of shape (circle, square, or triangle), sh
 
 Watch a [video](https://watch.screencastify.com/v/jfydmQtuUsHyzkjtF3h1) demonstration of the basic functionality:
 
-https://user-images.githubusercontent.com/116515976/230991714-bffc14be-c289-4ec2-b1bc-3bfb1ae13cfe.mov
+
 
 ## Table of Contents
 
@@ -40,4 +40,4 @@ Ask questions by contacting me at:
 
 Github [alberdaniel1](https://github.com/alberdaniel1)
 
-Email elizabetholsavsky@gmail.com
+Email alberdaniel1@gmail.com
